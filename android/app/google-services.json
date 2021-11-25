@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "286411338588",
+    "project_id": "alma-mater-app-8a4eb",
+    "storage_bucket": "alma-mater-app-8a4eb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:286411338588:android:e38a96ad753bae463fc799",
+        "android_client_info": {
+          "package_name": "com.almamater.diary"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "286411338588-n56ebsn02molnti4k0t3jf6r0b8ptjll.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZB5tCWPHwruZuAcxfWuiv8T_Jq5WBUrE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "286411338588-n56ebsn02molnti4k0t3jf6r0b8ptjll.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

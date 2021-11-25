@@ -3,11 +3,19 @@ const initialState = {
     students: [],
     user: {},
     userType: '',
-    userData: ''
+    userData: '',
+    initialRoute: 'Меню'
 };
 
 export const authReducer = (state=initialState, action) => {
     switch(action.type) {
+        case 'SET_INITIAL_ROUTE':
+
+            return {
+                ...state,
+                initialRoute: action.payload
+            }
+
         case 'LOG_IN':
         
             return {

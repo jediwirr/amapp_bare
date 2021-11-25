@@ -13,7 +13,6 @@ const ArticleDetails = (props) => {
     const handled = useSelector(state => state.gym.handled);
     const dataItem = useSelector(state => state.gym.dataItem);
     const userid = useSelector(state => state.gym.userid);
-    const comments = useSelector(state => state.gym.comments);
     const dispatch = useDispatch();
     const loadDataItem = (id, by_user) => dispatch({type: 'LOAD_DATA_ITEM', id, by_user});
     const loadComments = (content, id) => dispatch({type: 'LOAD_COMMENTS', content, id});
@@ -38,32 +37,6 @@ const ArticleDetails = (props) => {
             title: title.length > 31 ? title.slice(0, 32) + '...' : title
         });
     }, [])
-
-    const pushComment = async (user) => {
-        if (message !== '') {
-            let comment = {
-                "article_id": dataItem.id,
-                "count": `${userid}about${dataItem.id}`,
-                "by_user": userid,
-                "message": `(${user}) ${message}`
-            }
-    
-            let note = JSON.stringify(comment);
-    
-            await fetch(`http://${ip}/comments/`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                  },
-                body: note
-            })
-            .then(loadComments(comments, dataItem.id));
-        } else {
-            Alert.alert('Заполните поле для комментария');
-        }
-
-        setMessage('');
-    }
 
     return (
         <ScrollView>

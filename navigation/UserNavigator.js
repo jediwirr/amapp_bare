@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { Alert, AppState } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import messaging from '@react-native-firebase/messaging';
+import { useNavigation } from '@react-navigation/native';
 
 import { MainNavigator } from './MainNavigator';
 import AdsScreen from '../screens/Ads';
@@ -9,16 +12,70 @@ import AccountScreen from '../screens/Account';
 import LogOutScreen from '../screens/LogOut';
 import AuthScreen from '../screens/AuthScreen';
 import ActsScreen from "../screens/Acts";
+import { ip } from '../screens/gimnazist/RegForm';
 
 import { HomeToDetailsNav } from './Navs';
 
 const Stack = createNativeStackNavigator();
 
 export const UserNavigator = () => {
-  const isSignedIn = useSelector(state => state.auth.isSignedIn);
+    const appState = useRef(AppState.currentState);
+    const isSignedIn = useSelector(state => state.auth.isSignedIn);
+    const navigation = useNavigation();
+    const dispatch = useDispatch();
+    const initialRoute = useSelector(state => state.auth.initialRoute);
+    const setInitialRoute = (payload) => dispatch({type: 'SET_INITIAL_ROUTE', payload});
+
+    const _sendToken = async (token) => {
+        const data = {
+            'push_token': token,
+            'owner': ''
+        }
     
-  const Nav = () => (
-        <Stack.Navigator screenOptions={{
+        await fetch(`http://${ip}/tokens/`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json' 
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(response => console.log(response))
+        .catch(error => console.log(error))
+    };
+
+    useEffect(() => {
+        messaging().getToken().then(token => {
+            console.log(token);
+            _sendToken(token);
+        });
+    }, []);
+
+    useEffect(() => {
+        const unsubscribe = messaging().onMessage(async remoteMessage => {
+          Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
+        });
+    
+        return unsubscribe;
+      }, []);
+
+    useEffect(() => {
+        messaging().onNotificationOpenedApp(remoteMessage => {
+            console.log(remoteMessage.notification);
+        });
+
+        messaging()
+        .getInitialNotification()
+        .then(remoteMessage => {
+            if (remoteMessage) {
+                console.log(remoteMessage.notification);
+                setInitialRoute('Гимназист');   
+            }
+        });
+    }, []);
+    
+    const Nav = () => (
+        <Stack.Navigator initialRouteName={initialRoute} screenOptions={{
             headerStyle: {
                 backgroundColor: '#002e2f',
             },

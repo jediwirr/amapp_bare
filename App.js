@@ -1,5 +1,6 @@
 /**
  * by anton pastukhov
+ * andm1793@gmail.com
  */
 
 import React from 'react';
@@ -9,6 +10,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { UserNavigator } from './navigation/UserNavigator';
 
 const App = () => {
+
   return(
     <Provider store={store}>
       <NavigationContainer>
