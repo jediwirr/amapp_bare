@@ -1,4 +1,4 @@
-package com.amapp_bare;
+package com.almamater.diary;
 
 import com.facebook.react.ReactActivity;
 

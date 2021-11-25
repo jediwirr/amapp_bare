@@ -1,4 +1,4 @@
-package com.amapp_bare;
+package com.almamater.diary;
 
 import android.app.Application;
 import android.content.Context;
