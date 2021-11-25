@@ -3,9 +3,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import MenuScreen from '../screens/Menu';
-// import MarksScreen from '../screens/Marks';
-// import { LoadsNavigator } from "./LoadsNavigator";
-// import { TimetableNavigator } from "./TimetableNavigator";
+import MarksScreen from '../screens/Marks';
+import { LoadsNavigator } from "./LoadsNavigator";
+import { TimetableNavigator } from "./TimetableNavigator";
 import { DiaryNavigator } from './DiaryNavigator';
 
 const Tab = createBottomTabNavigator();
@@ -51,7 +51,7 @@ export const MainNavigator = () => {
                         title: 'Дневник'
                     }}
                 />
-                {/* <Tab.Screen
+                <Tab.Screen
                     name="Отметки"
                     component={MarksScreen}
                     options={{
@@ -95,7 +95,7 @@ export const MainNavigator = () => {
                         ),
                         title: 'Расписание'
                     }}
-                /> */}
+                />
             </Tab.Group>
         </Tab.Navigator>
     );

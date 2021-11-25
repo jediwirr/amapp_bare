@@ -10,7 +10,7 @@ import LogOutScreen from '../screens/LogOut';
 import AuthScreen from '../screens/AuthScreen';
 import ActsScreen from "../screens/Acts";
 
-// import { HomeToDetailsNav } from './Navs';
+import { HomeToDetailsNav } from './Navs';
 
 const Stack = createNativeStackNavigator();
 
@@ -61,10 +61,10 @@ export const UserNavigator = () => {
                     name='Выход'
                     component={LogOutScreen}
                 />
-                {/* <Stack.Screen
+                <Stack.Screen
                     name='Гимназист'
                     component={HomeToDetailsNav}
-                /> */}
+                />
             </Stack.Group>
         </Stack.Navigator>
     );
@@ -75,10 +75,10 @@ export const UserNavigator = () => {
                 name='Авторизация'
                 component={AuthScreen}
             />
-            {/* <Stack.Screen
+            <Stack.Screen
                 name='Гимназист'
                 component={HomeToDetailsNav}
-            /> */}
+            />
         </Stack.Navigator>
     );
 

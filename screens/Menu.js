@@ -3,8 +3,8 @@ import {Text, FlatList, TouchableOpacity, View, Dimensions, SafeAreaView} from '
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useSelector, useDispatch } from 'react-redux';
 
-import {styles, theme, styles_dark} from '../components/Style';
-// import Links from "../components/Links";
+import {styles, styles_dark} from '../components/Style';
+import Links from "../components/Links";
 
 
 
@@ -100,7 +100,7 @@ const MenuScreen = ({navigation}) => {
             <View
                 // style={{marginTop: height / 2.5}}
             >
-                {/* <Links col='#000' navigation={navigation} /> */}
+                <Links col='#000' navigation={navigation} />
             </View>
         </SafeAreaView>
     );

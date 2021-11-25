@@ -12,7 +12,7 @@ import {Button} from 'react-native-paper';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {styles} from '../components/Style';
-// import Links from '../components/Links';
+import Links from '../components/Links';
 
 
 const AuthScreen = ({navigation}) => {
@@ -115,7 +115,7 @@ const AuthScreen = ({navigation}) => {
                     Вход
                 </Button>
 
-            {/* <Links col='#fff' navigation={navigation} /> */}
+            <Links col='#fff' navigation={navigation} />
         </KeyboardAvoidingView>
     );
 };
