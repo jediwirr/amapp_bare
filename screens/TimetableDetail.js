@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Dimensions, Platform } from 'react-native';
+import { View, TextInput, Dimensions, Platform } from 'react-native';
 import { Button } from 'react-native-paper';
 import { useDispatch, useSelector } from "react-redux";
 

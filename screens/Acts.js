@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from 'react';
-import {View, Text, FlatList, Dimensions, TouchableOpacity, Linking} from 'react-native';
-import {useSelector} from "react-redux";
+import React, { useEffect, useState } from 'react';
+import { View, Text, FlatList, Dimensions, TouchableOpacity, Linking } from 'react-native';
+import { useSelector } from "react-redux";
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import { styles } from '../components/Style';
@@ -23,9 +23,6 @@ const ActsScreen = () => {
         {name: 'Май', num: '5'}
     ];
 
-    // const month = months.filter(item => item.num === '9')
-    // console.log(month)
-
     const handleLink = (url) => {
         Linking.openURL(url);
     };
@@ -39,9 +36,7 @@ const ActsScreen = () => {
             .catch(error => console.log(error));
     }, []);
 
-    // https://diary.alma-mater-spb.ru/e-journal/parents/print_user.php?clue=alma64521&month=9&student=82
-
-    const openAct =(month) => {
+    const openAct = async (month) => {
         handleLink(`https://diary.alma-mater-spb.ru/e-journal/parents/print_user.php?clue=${userData.clue}&month=${month}&student=${user.student_id}`);
         console.log(month);
     };

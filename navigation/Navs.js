@@ -4,7 +4,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useSelector } from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import Home, { Categories, UserSettings } from '../screens/gimnazist/Home';
+import Home from '../screens/gimnazist/Home';
+import UserSettings from '../screens/gimnazist/UserSettings';
+import Categories from '../screens/gimnazist/Categories';
 import ArticleDetails from '../screens/gimnazist/ArticleDetails';
 
 const Stack = createNativeStackNavigator();

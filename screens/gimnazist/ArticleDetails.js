@@ -1,5 +1,5 @@
-import React, { useEffect, useLayoutEffect, useState } from 'react';
-import { StyleSheet, Text, View, ScrollView, Image, Alert } from 'react-native';
+import React, { useEffect, useLayoutEffect } from 'react';
+import { StyleSheet, Text, View, ScrollView, Image } from 'react-native';
 import { ip } from './RegForm';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -8,35 +8,20 @@ import UserPanel from './UserPanel';
 let header;
 
 const ArticleDetails = (props) => {
-    const { id, title, published } = props.route.params.data;
-    const [message, setMessage] = useState('');
-    const handled = useSelector(state => state.gym.handled);
+    const { title } = props.route.params;
     const dataItem = useSelector(state => state.gym.dataItem);
-    const userid = useSelector(state => state.gym.userid);
     const dispatch = useDispatch();
-    const loadDataItem = (id, by_user) => dispatch({type: 'LOAD_DATA_ITEM', id, by_user});
-    const loadComments = (content, id) => dispatch({type: 'LOAD_COMMENTS', content, id});
-
-    useEffect(() => {
-        loadDataItem(id, userid);
-    }, [handled])
-
-    useEffect(() => {
-        fetch(`http://${ip}/comments/`, {
-            method: 'GET'
-        })
-        .then(response => response.json())
-        .then(response =>
-            loadComments(response, id)
-        )
-        .catch(error => console.log(error))
-    }, [message])
+    const loadDataItem = (title) => dispatch({type: 'LOAD_DATA_ITEM', title});
 
     useLayoutEffect(() => {
         props.navigation.setOptions({
             title: title.length > 31 ? title.slice(0, 32) + '...' : title
         });
-    }, [])
+    }, []);
+
+    useEffect(() => {
+        loadDataItem(title);
+    }, []);
 
     return (
         <ScrollView>
@@ -76,14 +61,14 @@ const ArticleDetails = (props) => {
             </View>
             <UserPanel 
                 ip={ip}
-                title={id}
+                title={dataItem.id}
                 name={dataItem.title}
                 description = {dataItem.description}
                 content = {dataItem.content}
                 uri = {dataItem.web_uri}
                 color={dataItem.color}
                 numOfLikes={dataItem.likes} 
-                datetime={published} 
+                datetime={dataItem.published} 
                 comment={() => console.log('comment')}
             />
         </ScrollView>

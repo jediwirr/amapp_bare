@@ -27,14 +27,9 @@ const DiaryScreen = ({navigation}) => {
     const m = useSelector(state => state.date.stringMonth);
     const date = useSelector(state => state.date.stringDate);
     // const isCalendar = useSelector(state => state.calendar.openCalendar);
-    const isLesson = useSelector(state => state.lesson.openLesson);
 
     const userData = useSelector(state => state.auth.userData);
     const user = useSelector(state => state.auth.user);
-
-    const handleLink = (url) => {
-        Linking.openURL(url);
-    };
 
     const get_month = () => {
         for (let i=0; i<12; i++) {
@@ -136,7 +131,7 @@ const DiaryScreen = ({navigation}) => {
     };
 
     return (
-        <SafeAreaView style={styles.safeArea}>
+        <SafeAreaView>
 
             <ScrollView style={theme.light} contentContainerStyle={styles.adsScreen}>
                 <Button

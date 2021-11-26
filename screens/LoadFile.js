@@ -15,11 +15,11 @@ const LoadFile = () => {
     const name = useSelector(state => state.loads.subjectName);
     const lesson = useSelector(state => state.loads.selectedLesson);
 
-    const handleLink = (url) => {
+    const _handleLink = (url) => {
         Linking.openURL(url);
     };
 
-    const refreshLesson = async () => {
+    const _refreshLesson = async () => {
         await fetch(`https://diary.alma-mater-spb.ru/e-journal/api/update_lesson.php?clue=${userData.clue}&user_id=${userData.user_id}&student_id=${user.student_id}&lesson_id=${lesson.lesson_id}`, {
             method: 'GET'
         })
@@ -34,7 +34,7 @@ const LoadFile = () => {
 
     let data = new FormData();
 
-    const uploadFile = async () => {
+    const _uploadFile = async () => {
 
         await fetch(`https://diary.alma-mater-spb.ru/e-journal/api/upload_file.php?clue=${userData.clue}&user_id=${userData.user_id}&student_id=${user.student_id}&lesson_id=${lesson.lesson_id}`, {
             method: 'POST',
@@ -49,7 +49,7 @@ const LoadFile = () => {
             if (response.status === 0) {
 
                 Alert.alert('Файл успешно загружен');
-                refreshLesson();
+                _refreshLesson();
 
             } else if (response.status === 2) {
                 Alert.alert('Чего-то не хватает');
@@ -63,37 +63,36 @@ const LoadFile = () => {
         });
     }
 
-    const pickFiles = async () => {
-
-            try {
-                const results = await DocumentPicker.pick({
-                    type: [DocumentPicker.types.allFiles],
-                })
-                for (const res of results) {
-                    data.append('file', {
-                        name: res.name,
-                        type: res.type,
-                        uri: res.uri
-                    });
-                    console.log(res.name, res.type, res.uri);
-                }
-                uploadFile()
-            } catch (err) {
-                if (DocumentPicker.isCancel(err)) {
-                    Alert.alert('Загрузка отменена')
-                } else {
-                    throw(err);
-                }
+    const _pickFiles = async () => {
+        try {
+            const results = await DocumentPicker.pick({
+                type: [DocumentPicker.types.allFiles],
+            })
+            for (const res of results) {
+                data.append('file', {
+                    name: res.name,
+                    type: res.type,
+                    uri: res.uri
+                });
+                console.log(res.name, res.type, res.uri);
             }
+            _uploadFile()
+        } catch (err) {
+            if (DocumentPicker.isCancel(err)) {
+                Alert.alert('Загрузка отменена')
+            } else {
+                throw(err);
+            }
+        }
     };
 
-    const deleteFile = async (fileID) => {
+    const _deleteFile = async (fileID) => {
         await fetch(`https://diary.alma-mater-spb.ru/e-journal/api/delete_file.php?clue=${userData.clue}&user_id=${userData.user_id}&file_id=${fileID}`, {
             method: 'DELETE'
         })
             .then(response => response.json())
             .then(() => {
-                refreshLesson();
+                _refreshLesson();
                 Alert.alert('Файл удалён');
             })
             .catch(error => {
@@ -115,12 +114,12 @@ const LoadFile = () => {
                             borderBottomColor: 'gray'
                         }
                     }
-                    onPress={() => handleLink(item.url)}
+                    onPress={() => _handleLink(item.url)}
                 >
                     {item.title}
                 </Text>
                 <Button
-                    onPress={() => deleteFile(item.file_id)}
+                    onPress={() => _deleteFile(item.file_id)}
                 >
                     <Icon
                         name='close-outline'
@@ -163,7 +162,7 @@ const LoadFile = () => {
                             borderBottomColor: 'gray'
                         }
                     }
-                    onPress={() => pickFiles()}
+                    onPress={() => _pickFiles()}
                 >
                     + Добавить файл
                 </Text>

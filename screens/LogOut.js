@@ -34,7 +34,6 @@ const LogOutScreen = ({navigation}) => {
                     color='blue'
                     onPress={
                         storeData(''),
-                        // setDate(new Date(Date()).getDate()),
                         log_out
                     }
                 >

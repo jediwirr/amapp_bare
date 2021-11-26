@@ -129,7 +129,7 @@ const TimetableScreen = ({navigation}) => {
     };
 
     return (
-        <SafeAreaView style={styles.safeArea}>
+        <SafeAreaView>
             <Header />
             <FlatList
                 data={schedule}

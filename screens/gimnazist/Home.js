@@ -1,136 +1,36 @@
 import React, { useEffect } from 'react';
-import { StyleSheet, Text, View, ScrollView, Image, FlatList, Alert } from 'react-native';
+import { StyleSheet, Text, View, Image, FlatList } from 'react-native';
 import { Card } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
-import Icon from 'react-native-vector-icons/Ionicons';
 
+import { fetchContent } from '../../store/asyncActions/getContent';
 import UserPanel from './UserPanel';
 import { ip } from './RegForm';
 
-export const ErrorScreen = () => {
-    return(
-        <View style={styles.cardStyle}>
-            <Text style={styles.listStyle}>ПРОИЗОШЛА ОШИБКА</Text>
-            <Text>Перезагрузите приложение</Text>
-        </View>
-    )
-}
-
-export const UserSettings = (props) => {
-    const dispatch = useDispatch();
-    const userid = useSelector(state => state.gym.userid);
-    const signOut = () => dispatch({type: 'SIGN_OUT'});
-    const loadFavs = (payload) => dispatch({type: 'LOAD_FAVORITES_LIST', payload});
-
-    const data = useSelector(state => state.gym.data);
-    const fav_as = data.filter(item => item.likes.includes(userid));
-
-    return(
-        <View style={styles.cardStyle}>
-            <View style={styles.listStyle}>
-                <Icon 
-                    name='heart' 
-                    size={30}
-                    color="#711E63"
-                />
-                <Text style={{fontSize: 18}}
-                    onPress={() => {
-                        if (fav_as.length === 0) {
-                            Alert.alert('Вы пока не отмечали понравившиеся материалы')
-                        } else {
-                            loadFavs(userid);
-                            props.navigation.navigate("МАТЕРИАЛЫ");
-                        }
-                    }} 
-                >Понравившиеся материалы</Text>
-            </View>
-            <View style={styles.listStyle}>
-                <Icon 
-                    name='exit' 
-                    size={30}
-                    color="#711E63"
-                /> 
-                <Text style={{fontSize: 18}}
-                    onPress={() => signOut()}
-                >Выйти</Text>
-            </View>
-        </View>
-    )
-}
-
-export const Categories = (props) => {
-    const data = useSelector(state => state.gym.data);
-    const dispatch = useDispatch();
-    const initialCats = data.map(item => item.category);
-    const loadList = (payload) => dispatch({type: 'LOAD_CATEGORY_LIST', payload});
-
-    const loadCatItems = (cat) => {
-        loadList(cat);
-        props.navigation.navigate("МАТЕРИАЛЫ");
-    }
-
-    let cats = Array.from(new Set(initialCats));
-
-    return(
-        <ScrollView style={styles.cardStyle}>
-            <Text 
-               onPress={() => {
-                    loadCatItems('');
-                }} 
-                style={styles.listStyle}
-            >Все материалы</Text>
-            {cats.map(item => 
-                <Text 
-                    onPress={() => {
-                        loadCatItems(item);
-                    }}
-                    key={item} 
-                    style={styles.listStyle}
-                >{item}</Text>)}
-        </ScrollView>
-    );
-};
-
 const Home = (props) => {
-
     const data = useSelector(state => state.gym.data);
     const cl = useSelector(state => state.gym.catList);
-    const userid = useSelector(state => state.gym.userid);
 
     const dispatch = useDispatch();
 
-    const loadData = (payload) => dispatch({type: 'LOAD_DATA', payload});
     const loadList = (payload) => dispatch({type: 'LOAD_CATEGORY_LIST', payload});
-
-    const handled = useSelector(state => state.gym.handled);
 
     useEffect(() => {
         loadList('');
-    }, [])
+    }, []);
 
     useEffect(() => {
-        fetch(`http://${ip}/articles/`, {
-            method: 'GET'
-        })
-        .then(response => response.json())
-        .then(response =>
-            loadData(response)
-        )
-        .catch(error => console.log(error))
-    }, [])
+        dispatch(fetchContent());
+    }, []);
 
-    useEffect(() => {
-        loadData(data);
-    }, [handled])
-
-    const clickedItem = (data) => {
-        props.navigation.navigate("Details", {data:data});
+    const clickedItem = (title) => {
+        props.navigation.navigate("Details", {title: title});
     }
 
     const renderData = (item) => {
 
         return (
-            <Card style={styles.cardStyle} onPress = {() => clickedItem(item)}>
+            <Card style={styles.cardStyle} onPress = {() => clickedItem(item.title)}>
                 <Text style={{color: 'gray', fontSize: 15}}>{item.category.toUpperCase()}</Text>
                 <Text style={{fontSize: 22, fontWeight: 'bold'}}>{item.title}</Text>
                 <Text style={{fontSize: 16, fontStyle: 'italic'}}>{item.author}</Text>
@@ -150,9 +50,6 @@ const Home = (props) => {
                     description = {item.description}
                     content = {item.content}
                     uri = {item.web_uri}
-                    color={item.likes.includes(userid) ? 'red' : 'gray'}
-                    l = {item.likes}
-                    numOfLikes={Array.from(new Set(item.likes)).length} 
                     datetime={item.published} 
                     comment={() => clickedItem(item)}
                 />
@@ -171,7 +68,7 @@ const Home = (props) => {
                 />
             </View>
     )
-}
+};
 
 export const styles = StyleSheet.create({
     cardStyle: {

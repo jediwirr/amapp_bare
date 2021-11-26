@@ -20,7 +20,6 @@ const AuthScreen = ({navigation}) => {
     const log_in = (students, user, user_type, user_data) => dispatch({type: 'LOG_IN', students, user, user_type, user_data});
     const [login, onChangeLogin] = useState('');
     const [password, onChangePassword] = useState('');
-    const admin_log_in = () => dispatch({type: 'ADMIN_LOG_IN'});
     const pushToken = useSelector(state => state.note.expoPushToken);
 
     const getAuthorized = (data) => {
@@ -69,8 +68,6 @@ const AuthScreen = ({navigation}) => {
                 console.log(response);
             } else if (login === '' || password === '') {
                 Alert.alert('Введите логин и пароль');
-            } else if (login === 'antheon' || password === 'antheon') {
-                admin_log_in();
             } else {
                 Alert.alert('Вы ввели неверный логин или пароль');
             }

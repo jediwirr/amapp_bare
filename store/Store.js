@@ -1,4 +1,5 @@
-import { combineReducers, createStore } from 'redux';
+import { combineReducers, createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 
 import { authReducer } from './reducers/authReducer';
 import { themeReducer } from './reducers/themeReduer';
@@ -11,18 +12,17 @@ import { timetableReducer } from "./reducers/timetableReducer";
 import { notificationsReducer } from './reducers/notificationsReducer';
 import { GymReducer } from './reducers/GymReducer';
 
-const rootReducer = combineReducers(
-    {
-        auth: authReducer, 
-        theme: themeReducer, 
-        marks: marksReducer,
-        date: dateReducer,
-        calendar: calendarReducer,
-        lesson: lessonReducer,
-        loads: loadsReducer,
-        tt: timetableReducer,
-        note: notificationsReducer,
-        gym: GymReducer
-    });
+const rootReducer = combineReducers({
+    auth: authReducer, 
+    theme: themeReducer, 
+    marks: marksReducer,
+    date: dateReducer,
+    calendar: calendarReducer,
+    lesson: lessonReducer,
+    loads: loadsReducer,
+    tt: timetableReducer,
+    note: notificationsReducer,
+    gym: GymReducer
+});
 
-export const store = createStore(rootReducer);
+export const store = createStore(rootReducer, applyMiddleware(thunk));

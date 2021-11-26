@@ -10,10 +10,20 @@ import { NavigationContainer } from '@react-navigation/native';
 import { UserNavigator } from './navigation/UserNavigator';
 
 const App = () => {
+  const config = {
+    screens: {
+      Гимназист: 'gym'
+    }
+  }
+
+  const linking = {
+    prefixes: ['https://amapp.com', 'amapp://'],
+    config
+  }
 
   return(
     <Provider store={store}>
-      <NavigationContainer>
+      <NavigationContainer linking={linking}>
         <UserNavigator />
       </NavigationContainer>
     </Provider>

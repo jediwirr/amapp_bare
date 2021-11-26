@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Alert, AppState } from 'react-native';
+import React, { useEffect } from 'react';
+import { Alert } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useSelector, useDispatch } from 'react-redux';
 import messaging from '@react-native-firebase/messaging';
@@ -19,12 +19,10 @@ import { HomeToDetailsNav } from './Navs';
 const Stack = createNativeStackNavigator();
 
 export const UserNavigator = () => {
-    const appState = useRef(AppState.currentState);
     const isSignedIn = useSelector(state => state.auth.isSignedIn);
-    const navigation = useNavigation();
     const dispatch = useDispatch();
-    const initialRoute = useSelector(state => state.auth.initialRoute);
-    const setInitialRoute = (payload) => dispatch({type: 'SET_INITIAL_ROUTE', payload});
+    const navigation = useNavigation();
+    const loadData = (payload) => dispatch({type: 'LOAD_DATA', payload});
 
     const _sendToken = async (token) => {
         const data = {
@@ -44,6 +42,25 @@ export const UserNavigator = () => {
         .catch(error => console.log(error))
     };
 
+    const _handleNotifiaction = (message) => {
+        console.log(message);
+
+        fetch(`http://${ip}/articles/`, {
+            method: 'GET'
+        })
+        .then(response => response.json())
+        .then(response =>
+            loadData(response)
+        )
+        .then(() => {
+            navigation.navigate('Гимназист', {
+                screen: message.data.screen,
+                params: { title: message.notification.title },
+            });
+        })
+        .catch(error => console.log(error));
+    };
+
     useEffect(() => {
         messaging().getToken().then(token => {
             console.log(token);
@@ -61,21 +78,20 @@ export const UserNavigator = () => {
 
     useEffect(() => {
         messaging().onNotificationOpenedApp(remoteMessage => {
-            console.log(remoteMessage.notification);
+           _handleNotifiaction(remoteMessage);
         });
 
         messaging()
         .getInitialNotification()
         .then(remoteMessage => {
             if (remoteMessage) {
-                console.log(remoteMessage.notification);
-                setInitialRoute('Гимназист');   
+                _handleNotifiaction(remoteMessage);
             }
         });
     }, []);
     
     const Nav = () => (
-        <Stack.Navigator initialRouteName={initialRoute} screenOptions={{
+        <Stack.Navigator screenOptions={{
             headerStyle: {
                 backgroundColor: '#002e2f',
             },

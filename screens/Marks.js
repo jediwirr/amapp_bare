@@ -164,9 +164,7 @@ const MarksScreen = () => {
     );
 
     return (
-        <SafeAreaView
-            style={styles.safeArea}
-        >
+        <SafeAreaView>
             <Filter />
             <FlatList
                 data={subjects}

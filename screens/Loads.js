@@ -26,7 +26,7 @@ const LoadsScreen = ({navigation}) => {
             .catch(error => console.log(error));
     }, [user]);
 
-    const selectLesson = (id, name) => {
+    const _selectLesson = (id, name) => {
         fetch(`https://diary.alma-mater-spb.ru/e-journal/api/open_homework.php?clue=${userData.clue}&user_id=${userData.user_id}&student_id=${user.student_id}&quarter=${term}&subject_id=${id}`, {
             method: 'GET'
         })
@@ -53,7 +53,7 @@ const LoadsScreen = ({navigation}) => {
             }
         >
             <Text style={theme_text.light}
-                  onPress={() => selectLesson(id, subject)}
+                  onPress={() => _selectLesson(id, subject)}
             >
                 {subject}
             </Text>
@@ -66,7 +66,7 @@ const LoadsScreen = ({navigation}) => {
     };
 
     return (
-        <SafeAreaView style={styles.safeArea}>
+        <SafeAreaView>
             <QuartersHeader term={term} />
             <FlatList
             data={subjects}
