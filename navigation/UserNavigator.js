@@ -70,7 +70,11 @@ export const UserNavigator = () => {
 
     useEffect(() => {
         const unsubscribe = messaging().onMessage(async remoteMessage => {
-          Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
+          Alert.alert(
+              'Новое уведомление:', 
+              `${remoteMessage.notification.title}\n${remoteMessage.notification.body}`, 
+              [{text: 'ПОСМОТРЕТЬ', onPress: () => _handleNotifiaction(remoteMessage)}, {text: 'ВЕРНУТЬСЯ'}]
+          );
         });
     
         return unsubscribe;

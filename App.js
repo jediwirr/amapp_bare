@@ -9,7 +9,7 @@ import { Provider } from 'react-redux';
 import { store } from './store/Store';
 import { NavigationContainer } from '@react-navigation/native';
 import { UserNavigator } from './navigation/UserNavigator';
-import SplashScreen from 'react-native-splash-screen'
+import SplashScreen from 'react-native-splash-screen';
 
 const App = () => {
   useEffect(() => {
@@ -20,12 +20,12 @@ const App = () => {
     screens: {
       Гимназист: 'gym'
     }
-  }
+  };
 
   const linking = {
     prefixes: ['https://amapp.com', 'amapp://'],
     config
-  }
+  };
 
   return(
     <Provider store={store}>
