@@ -72,7 +72,7 @@ export const UserNavigator = () => {
         const unsubscribe = messaging().onMessage(async remoteMessage => {
           Alert.alert(
               'Новое уведомление:', 
-              `${remoteMessage.notification.title}\n${remoteMessage.notification.body}`, 
+              `${remoteMessage.notification.title}\n\n${remoteMessage.notification.body}`, 
               [{text: 'ПОСМОТРЕТЬ', onPress: () => _handleNotifiaction(remoteMessage)}, {text: 'ВЕРНУТЬСЯ'}]
           );
         });
