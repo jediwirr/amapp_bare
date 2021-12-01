@@ -42,7 +42,7 @@ function Form(props) {
                 /> 
                 <Button style={{marginTop: 15}}
                     mode = 'outlined'
-                    onPress = {() => PostData(`http://${ip}:80/api/tokens/`, 
+                    onPress = {() => PostData(`https://${ip}:80/api/tokens/`, 
                         {
                             'username': `${username}`, 
                             'password': `${password}`
@@ -56,7 +56,7 @@ function Form(props) {
                             })
                         .then(() => {
                             if (username) {
-                                GetData(`http://${ip}:80/api/users/profile/${username}`, 
+                                GetData(`https://${ip}:80/api/users/profile/${username}`, 
                                 {})
                                 .then(data => {
                                     signIn(data.id, data.username);

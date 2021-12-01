@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { TextInput, Button } from 'react-native-paper'
 
-const ip = '192.168.0.217:80/api'
+const ip = 'gimnazist.herokuapp.com/api'
 // gimnazist.herokuapp.com/api
 // 192.168.0.217:80/api
 // 192.168.0.88
@@ -53,14 +53,14 @@ function RegForm(props) {
             /> 
             <Button style={{marginTop: 15}}
                 mode = 'outlined'
-                onPress = {() => PostData(`http://${ip}/users/`, 
+                onPress = {() => PostData(`https://${ip}/users/`, 
                     {
                         'username': `${username}`, 
                         'password': `${password}`,
                         'email': `${email}`
                     })
                     .then(data => {
-                        PostData(`http://${ip}/emails/`, 
+                        PostData(`https://${ip}/emails/`, 
                         {
                             'email': `${data.email}`,
                             'subject': 'Вы зарегистрировались', 

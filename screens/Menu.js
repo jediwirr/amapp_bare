@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, FlatList, TouchableOpacity, View, SafeAreaView } from 'react-native';
+import { Text, FlatList, TouchableOpacity, SafeAreaView } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useSelector } from 'react-redux';
 

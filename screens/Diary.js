@@ -69,6 +69,7 @@ const DiaryScreen = ({navigation}) => {
             .then(response => response.json())
             .then(response => {
                 setLessons(response.lessons)
+                console.log(response.lessons)
             })
             .catch(error => console.log(error));
         };

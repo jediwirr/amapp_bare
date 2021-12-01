@@ -3,7 +3,7 @@ import { ip } from "../../screens/gimnazist/RegForm";
 
 export const fetchContent = () => {
     return dispatch => {
-        fetch(`http://${ip}/articles/`, {
+        fetch(`https://${ip}/articles/`, {
             method: 'GET'
         })
         .then(response => response.json())

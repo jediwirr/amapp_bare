@@ -30,7 +30,7 @@ export const UserNavigator = () => {
             'owner': ''
         }
     
-        await fetch(`http://${ip}/tokens/`, {
+        await fetch(`https://${ip}/tokens/`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json' 
@@ -45,7 +45,7 @@ export const UserNavigator = () => {
     const _handleNotifiaction = (message) => {
         console.log(message);
 
-        fetch(`http://${ip}/articles/`, {
+        fetch(`https://${ip}/articles/`, {
             method: 'GET'
         })
         .then(response => response.json())
