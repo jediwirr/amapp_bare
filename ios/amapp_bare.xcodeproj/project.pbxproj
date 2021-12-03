@@ -11,6 +11,8 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		253326277C35B87CB16F6742 /* libPods-amapp_bare-amapp_bareTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 39FF602AC562A67A597C8369 /* libPods-amapp_bare-amapp_bareTests.a */; };
+		4480D5A6275A6E59006FADAF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
+		4480D5A7275A6E60006FADAF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		44C763C52757AE8D007822FB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 44C763C42757AE8D007822FB /* GoogleService-Info.plist */; };
 		B04ADECDE10F38377267C58B /* libPods-amapp_bare.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 20236492CCA05D129AB5E424 /* libPods-amapp_bare.a */; };
 /* End PBXBuildFile section */
@@ -22,6 +24,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
 			remoteInfo = amapp_bare;
+		};
+		4480D5A4275A6A29006FADAF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4480D5A0275A6A29006FADAF /* SplashScreen.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3D7682761D8E76B80014119E;
+			remoteInfo = SplashScreen;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -37,6 +46,7 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = amapp_bare/main.m; sourceTree = "<group>"; };
 		20236492CCA05D129AB5E424 /* libPods-amapp_bare.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-amapp_bare.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		39FF602AC562A67A597C8369 /* libPods-amapp_bare-amapp_bareTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-amapp_bare-amapp_bareTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4480D5A0275A6A29006FADAF /* SplashScreen.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SplashScreen.xcodeproj; path = "../node_modules/react-native-splash-screen/ios/SplashScreen.xcodeproj"; sourceTree = "<group>"; };
 		44C763A427579DA4007822FB /* Fontisto.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fontisto.ttf; sourceTree = "<group>"; };
 		44C763A527579DA4007822FB /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Octicons.ttf; sourceTree = "<group>"; };
 		44C763A627579DA4007822FB /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Feather.ttf; sourceTree = "<group>"; };
@@ -125,6 +135,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		4480D5A1275A6A29006FADAF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4480D5A5275A6A29006FADAF /* libSplashScreen.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		44C763A327579DA4007822FB /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -152,6 +170,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				4480D5A0275A6A29006FADAF /* SplashScreen.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -267,6 +286,12 @@
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 4480D5A1275A6A29006FADAF /* Products */;
+					ProjectRef = 4480D5A0275A6A29006FADAF /* SplashScreen.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				13B07F861A680F5B00A75B9A /* amapp_bare */,
@@ -274,6 +299,16 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		4480D5A5275A6A29006FADAF /* libSplashScreen.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSplashScreen.a;
+			remoteRef = 4480D5A4275A6A29006FADAF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		00E356EC1AD99517003FC87E /* Resources */ = {
@@ -287,6 +322,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4480D5A7275A6E60006FADAF /* LaunchScreen.storyboard in Resources */,
+				4480D5A6275A6E59006FADAF /* Images.xcassets in Resources */,
 				44C763C52757AE8D007822FB /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -574,6 +611,7 @@
 				CODE_SIGN_ENTITLEMENTS = amapp_bare/amapp_bare.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = GF82296J3F;
+				"HEADER_SEARCH_PATHS[arch=*]" = "$(SRCROOT)/../node_modules/react-native-splash-screen/ios";
 				INFOPLIST_FILE = amapp_bare/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
