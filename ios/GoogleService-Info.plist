@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>286411338588-ts454mtbmjm3j6egsg43to65njfg5lip.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.286411338588-ts454mtbmjm3j6egsg43to65njfg5lip</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAPjhT_iwA756oVGI5xewxUDCS60iMHPLA</string>
+	<key>GCM_SENDER_ID</key>
+	<string>286411338588</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.alma-mater-spb.ediary</string>
+	<key>PROJECT_ID</key>
+	<string>alma-mater-app-8a4eb</string>
+	<key>STORAGE_BUCKET</key>
+	<string>alma-mater-app-8a4eb.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:286411338588:ios:f07b5e0832fc57e13fc799</string>
+</dict>
+</plist>
